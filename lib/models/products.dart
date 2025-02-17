@@ -15,6 +15,16 @@ class Products extends ChangeNotifier {
     _products.add(p);
     notifyListeners(); //all UI depending on this class will be updated
   }
+
+  // void toggleFavorite(int index) {
+  //   _products[index].isFav = !_products[index].isFav;
+  //   notifyListeners();
+  // }
+
+  void toggleFavorite(Product p) {
+    p.isFav = !p.isFav;
+    notifyListeners();
+  }
 }
 
 class Product {
@@ -22,11 +32,13 @@ class Product {
   final String name;
   final String desc;
   final double price;
+  late bool isFav;
 
   Product({
     required this.id,
     required this.name,
     required this.desc,
     required this.price,
+    this.isFav = false,
   });
 }
